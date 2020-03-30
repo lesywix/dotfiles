@@ -169,3 +169,16 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+
+# TODO
+function cmd() {
+	if [ -z "${1}" ]; then
+		echo "ERROR: No command specified.";
+		return 1;
+    else
+		echo "which:" which ${1} 
+		echo "type:" type -a ${1} 
+		echo "whereis:" whereis ${1} 
+	fi;	
+}
