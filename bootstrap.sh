@@ -1,27 +1,50 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")";
+CONFIG_FILES=(
+  .vim
+  bin
+  .aliases
+#   .bash_profile
+#   .bash_prompt
+#   .bashrc
+  .editorconfig
+  .exports
+  .functions
+  .gitconfig
+  .gitignore
+  .tmux.conf
+  .vimrc
+  .zshrc
+  .path
+)
 
-git pull origin master;
-
-function doIt() {
-	rsync --exclude ".git/" \
-		--exclude ".DS_Store" \
-		--exclude ".osx" \
-		--exclude "bootstrap.sh" \
-		--exclude "README.md" \
-		--exclude "LICENSE-MIT.txt" \
-		-avh --no-perms . ~;
-	source ~/.bash_profile;
-}
-
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt;
+# backpack dir
+if [ -d ~/dotfiles.bak ]
+then
+        echo "backpack dir already exists!"
 else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt;
-	fi;
-fi;
-unset doIt;
+        echo "backpack dir doesn't exist, create '~/dotfiles.bak' instead"
+        mkdir ~/dotfiles.bak
+fi
+
+# backpack the old rc files
+# make soft link to myrc
+for file in ${CONFIG_FILES[@]}
+do
+        if [ -f ~/${file} ]
+        then
+                echo "${file} already exist!"
+                mv ~/${file} ~/dotfiles.bak
+        elif [ -h ~/${file} ]
+        then
+                echo "${file} is soft link, move to dotfiles.bak"
+                mv ~/${file} ~/dotfiles.bak
+        fi
+        ln -s $PWD/${file} ~/${file}
+        echo "Created link ~/${file} -> $PWD/${file}"
+done
+
+source ~/.zshrc
+# install autoenv
+# git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
+# echo 'source ~/.autoenv/activate.sh' >> ~/.bashrc
