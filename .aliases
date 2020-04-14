@@ -143,3 +143,7 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# proxy(should use proxy clint like shadowsocks-NG)
+alias proxy='export all_proxy=http://127.0.0.1:1087'
+alias unproxy='unset all_proxy'

@@ -7,6 +7,8 @@ let g:solarized_termtrans=1
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
+" set clipboard=unnamedplus
+
 " Enhance command-line completion
 set wildmenu
 " Allow cursor keys in insert mode
@@ -46,8 +48,8 @@ set number
 syntax on
 " Highlight current line
 set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
+" Make tabs as wide as four spaces
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -60,7 +62,7 @@ set incsearch
 " Always show status line
 set laststatus=2
 " Enable mouse in all modes
-set mouse=a
+set mouse=v
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.

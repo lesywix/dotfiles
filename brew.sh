@@ -97,5 +97,11 @@ brew install tree
 brew install vbindiff
 brew install zopfli
 
+# custom
+brew install jq
+brew install fpp
+brew install fx
+brew install z
+
 # Remove outdated versions from the cellar.
 brew cleanup

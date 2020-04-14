@@ -7,6 +7,9 @@
 	s = status -s
 	st = status
 
+    # checkout
+    co = checkout
+
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
@@ -193,3 +196,8 @@
 [user]
 	email = lin.wx@foxmail.com
 	name = Weixiang Lin
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
