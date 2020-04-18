@@ -145,5 +145,6 @@ alias reload="exec ${SHELL} -l"
 alias path='echo -e ${PATH//:/\\n}'
 
 # proxy(should use proxy clint like shadowsocks-NG)
-alias proxy='export all_proxy=http://127.0.0.1:1087'
-alias unproxy='unset all_proxy'
+alias proxy='export {http,https,ftp}_proxy=http://127.0.0.1:1087'
+alias pproxy='export {http,https,ftp}_proxy=http://127.0.0.1:8118'
+alias unproxy='unset {http,https,ftp}_proxy'

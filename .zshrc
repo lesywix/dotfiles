@@ -114,3 +114,8 @@ for file in ~/.{path,exports,aliases,functions}; do
 done;
 unset file
 
+# z command
+. /usr/local/etc/profile.d/z.sh
+
+# Created by `userpath` on 2020-04-17 11:11:46
+export PATH="$PATH:/Users/vino/.local/bin"
